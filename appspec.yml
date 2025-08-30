@@ -1,11 +1,16 @@
 version: 0.0
 os: linux
+
 files:
   - source: /
     destination: /var/www/html
 
 hooks:
-  AfterInstall:
-    - location: scripts/after_install.sh
+  BeforeInstall:
+    - location: scripts/clean.sh
       timeout: 300
+      runas: root
+  AfterInstall:
+    - location: after_install.sh
+      timeout: 180
       runas: root
